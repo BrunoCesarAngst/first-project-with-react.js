@@ -107,4 +107,8 @@ module.exports = {
 comp:~/first-project-with-react$ yarn add @commitlint/config-conventional @commitlint/cli -D
 comp:~/first-project-with-react$ echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
 comp:~/first-project-with-react$ yarn add husky -D
+comp:~/first-project-with-react$ npm install commitizen -g
+comp:~/first-project-with-react$ npm install commitizen --save-dev
+# Apaguei o arquivo package-lock.json e rodei
+comp:~/first-project-with-react$ yarn
 ```
