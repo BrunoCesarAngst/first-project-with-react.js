@@ -132,4 +132,33 @@ comp:~/first-project-with-react$ npm install commitizen -g
 comp:~/first-project-with-react$ npm install commitizen --save-dev
 # Apaguei o arquivo package-lock.json e rodei
 comp:~/first-project-with-react$ yarn
+comp:~/first-project-with-react$ git add . && git commit
+? Select the type of change that you are committing:
+❯ feat:        A new feature
+  fix:         A bug fix
+  improvement: An improvement to a current feature
+  docs:        Documentation only changes
+  style:       Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+  refactor:    A code change that neither fixes a bug nor adds a feature
+  perf:        A code change that improves performance
+  test:        Adding missing tests or correcting existing tests
+  build:       Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+  ci:          Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+  chore:       Other changes that don not modify src or test files
+(Move up and down to reveal more choices)
+
+? Select the type of change that you are committing: feat:        A new feature
+# O scope é um detalhamento para projetos grandes para mostrar onde há mudanças
+? What is the scope of this change (e.g. component or file name): (press enter to skip) atualizando
+# A mensagem o assunto do commit em si
+? Write a short, imperative tense description of the change (max 53 chars):
+ (39) feat: creating the project from scratch
+# Para se desejar colocar mais informações possibilitando quebra de linha \n
+? Provide a longer description of the change: (press enter to skip)
+ setting eslint, prettier & editorconfig and standardizing Git commit
+# Aqui está perguntando se tem algo que funcionáva e agora não funciona mais
+? Are there any breaking changes? No
+# Aqui está perguntando se isso afeta alguma issue que está aberta colocando essa informação as issue são fechadas automaticamente
+? Does this change affect any open issues? No
+
 ```
