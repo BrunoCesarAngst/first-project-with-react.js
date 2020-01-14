@@ -195,3 +195,9 @@ Começamos a configurar a página Main
 comp:~/first-project-with-react$ yarn add react-icons
 # e configuramos os arquivos index.js e index.js do estilo da página Main
 ```
+
+## Adicionando repositórios
+```bash
+comp:~/first-project-with-react$ yarn add axios
+comp:~/first-project-with-react$ mkdir -p src/services/ && touch src/services/api.js
+```
