@@ -203,4 +203,7 @@ comp:~/first-project-with-react$ mkdir -p src/services/ && touch src/services/ap
 ```
 
 ## Listando repositórios
-criamos um novo componente dentro index.js do Main, o List um ul, percorremos os repositórios com map
+criamos um novo componente dentro index.js do Main, o List um ul, percorrendo os repositórios com map e Estilizando a página
+
+## Utilizando LocalStorage
+
