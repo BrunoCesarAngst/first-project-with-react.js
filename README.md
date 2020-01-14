@@ -160,5 +160,27 @@ comp:~/first-project-with-react$ git add . && git commit
 ? Are there any breaking changes? No
 # Aqui está perguntando se isso afeta alguma issue que está aberta colocando essa informação as issue são fechadas automaticamente
 ? Does this change affect any open issues? No
+```
+## Roteamento no React
 
+Navegando entre páginas sem recarregar, pois, estamos construindo um SPA(Um SPA é uma aplicação web que roda em uma única página, se assemelhando a um aplicativo desktop ou um mobile, são leigamento chamadas de “páginas ajax”, um bom exemplo que gosto de usar é o Gmail do Google, ele é um SPA, a navegação na aplicação rola toda em uma única página e todo o conteúdo é carregado de uma vez ou obtido dinâmicamente (ou seja, via requisições Ajax).)
+```bash
+# para fazer o roteamento de páginas de nossa aplicação
+comp:~/first-project-with-react$ yarn add react-router-dom
+comp:~/first-project-with-react$ touch src/routes.js
+comp:~/first-project-with-react$ mkdir src/pages
+comp:~/first-project-with-react$ mkdir src/pages/Main
+comp:~/first-project-with-react$ touch src/pages/Main/index.js
+comp:~/first-project-with-react$ mkdir src/pages/Repository
+comp:~/first-project-with-react$ touch src/pages/Repository/index.js
+# configuramos as nossas paginas
+# configuramos o arquivo routes para receber as nossas paginas
+```
+## Styled Components
+```bash
+comp:~/first-project-with-react$ yarn add styled-components
+# Install
+# Inside VSCode, press Ctrl+P, and enter:
+# ext install vscode-styled-components
+comp:~/first-project-with-react$ touch src/pages/Main/styles.js
 ```
