@@ -5,7 +5,7 @@ import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
 /** importando a baseURL da api */
 import api from '../../services/api';
 
-import { Container, Form, SubmitButton } from './styles';
+import { Container, Form, SubmitButton, List } from './styles';
 
 /** tornamos o componente funcional em component class state full */
 export default class Main extends Component {
@@ -52,7 +52,7 @@ export default class Main extends Component {
 
   render() {
     /** trazendo as propriedades do state */
-    const { newRepo, loading } = this.state;
+    const { newRepo, repositories, loading } = this.state;
 
     return (
       /* para fazer alinhamentos */
@@ -85,6 +85,18 @@ export default class Main extends Component {
             )}
           </SubmitButton>
         </Form>
+
+        {/* List é uma ul que retorna para cada li um repositório fornecido */}
+        <List>
+          {/* retorno entre parenteses pois retorna mais de uma li */}
+          {repositories.map(repository => (
+            /** passando no key a propriedade única de repository */
+            <li key={repository.name}>
+              <span>{repository.name}</span>
+              <a href="">Detalhes</a>
+            </li>
+          ))}
+        </List>
       </Container>
     );
   }

@@ -1,4 +1,4 @@
-# First project with React.json
+# First project with React.js
 A project that shows a user's github repositories
 
 ## Criando projeto do zero
@@ -201,3 +201,6 @@ comp:~/first-project-with-react$ yarn add react-icons
 comp:~/first-project-with-react$ yarn add axios
 comp:~/first-project-with-react$ mkdir -p src/services/ && touch src/services/api.js
 ```
+
+## Listando repositórios
+criamos um novo componente dentro index.js do Main, o List um ul, percorremos os repositórios com map

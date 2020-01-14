@@ -98,3 +98,31 @@ export const SubmitButton = styled.button.attrs(props => ({
       }
     `}
 `;
+
+export const List = styled.ul`
+  /* tirar a bolinha */
+  list-style: none;
+  /* espaçamento entre */
+  margin-top: 30px;
+
+  li {
+    /* top/ bottom, right/left */
+    padding: 15px 0;
+    display: flex;
+    flex-direction: row;
+    /* separando para o limites da direita e esquerda */
+    justify-content: space-between;
+    align-items: center;
+
+    /* elemento atual mais li, se tem um li antes acrescenta a linha */
+    & + li {
+      border-top: 1px solid #eee;
+    }
+
+    a {
+      color: #7159c1;
+      /* tirar o underline */
+      text-decoration: none;
+    }
+  }
+`;
