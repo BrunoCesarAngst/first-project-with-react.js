@@ -189,3 +189,9 @@ comp:~/first-project-with-react$ touch src/pages/Main/styles.js
 comp:~/first-project-with-react$ mkdir -p src/styles/ && touch src/styles/global.js
 # configuramos e importamos esse arquivo para o arquivo App.js, usando fragment para colocar junto do outro componente
 ```
+## Estilizando página Main
+Começamos a configurar a página Main
+```bash
+comp:~/first-project-with-react$ yarn add react-icons
+# e configuramos os arquivos index.js e index.js do estilo da página Main
+```
