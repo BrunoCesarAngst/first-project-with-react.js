@@ -184,3 +184,8 @@ comp:~/first-project-with-react$ yarn add styled-components
 # ext install vscode-styled-components
 comp:~/first-project-with-react$ touch src/pages/Main/styles.js
 ```
+## Estilos globais
+```bash
+comp:~/first-project-with-react$ mkdir -p src/styles/ && touch src/styles/global.js
+# configuramos e importamos esse arquivo para o arquivo App.js, usando fragment para colocar junto do outro componente
+```
