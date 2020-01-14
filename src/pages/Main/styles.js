@@ -52,18 +52,22 @@ export const Form = styled.form`
   }
 `;
 
+/** criando a animação de carregando */
 const rotate = keyframes`
+  /* de */
   from {
     transform: rotate(0deg);
   }
+  /* para */
   to {
     transform: rotate(360deg);
   }
 `;
 
-/* passando pelo style components o atributo do componente */
+/* passando pelo style components o atributo do componente e com props conseguimos acessar as propriedades do elemento colocando o objeto {} entre parenteses ({}) para retornar */
 export const SubmitButton = styled.button.attrs(props => ({
   type: 'submit',
+  /** setamos a propriedade disabled como props.loading dando equivalência se props.loading estiver true também estará o disabled */
   disabled: props.loading,
 }))`
   background: #7159c1;
@@ -77,13 +81,17 @@ export const SubmitButton = styled.button.attrs(props => ({
   justify-content: center;
   align-items: center;
 
+  /* & estou me referindo ao elemento botão */
   &[disabled] {
+    /* sinal de não permitido */
     cursor: not-allowed;
     opacity: 0.6;
   }
 
+  /* uma função pegando minhas propriedades, se props.loading = true aplica a animação */
   ${props =>
     props.loading &&
+    /** adicionar um conjunto de css a um elemento baseado em alguma propriedade ou informação que vem de fora dele */
     css`
       svg {
         animation: ${rotate} 2s linear infinite;

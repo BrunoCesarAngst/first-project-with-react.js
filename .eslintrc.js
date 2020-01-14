@@ -4,7 +4,6 @@ module.exports = {
     es6: true,
   },
   extends: [
-    // 'plugin:react/recommended',
     'airbnb',
     'prettier',
     'prettier/react',
@@ -26,6 +25,8 @@ module.exports = {
     'prettier',
   ],
   rules: {
+    // o babel cuida do state dessa forma por baixo dos panos
+    'react/state-in-constructor': 'off',
     'prettier/prettier': 'error',
     'react/jsx-filename-extension': [
       'warn',
