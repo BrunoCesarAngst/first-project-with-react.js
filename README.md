@@ -225,3 +225,5 @@ comp:~/first-project-with-react$ touch src/pages/Repository/index.js
 # criando um styled component reutilizável
 comp:~/first-project-with-react$ mkdir -p src/components/Container/ && touch src/components/Container/index.js
 ```
+## Exibindo issues
+
