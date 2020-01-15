@@ -7,7 +7,10 @@ import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
 /** importando a baseURL da api */
 import api from '../../services/api';
 
-import { Container, Form, SubmitButton, List } from './styles';
+/** aqui o styled component que pode ser usado em vários arquivos */
+import Container from '../../components/Container';
+
+import { Form, SubmitButton, List } from './styles';
 
 /** tornamos o componente funcional em component class state full */
 export default class Main extends Component {

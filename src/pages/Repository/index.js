@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import api from '../../services/api';
 
-// import { Container } from './styles';
+/** aqui o styled component que pode ser usado em vários arquivos */
+import Container from '../../components/Container';
+import { Loading, Owner } from './styles';
 
 /** passando de função para class */
 export default class Repository extends Component {
@@ -16,9 +19,10 @@ export default class Repository extends Component {
 
   /** armazenando os dados do componente */
   state = {
-    /** aqui é um único repositório então um objeto */
+    /** aqui é um único repositório então é um objeto */
     repository: {},
     issues: [],
+    /** para controlar o estado de carregado ou não */
     loading: true,
   };
 
@@ -54,12 +58,32 @@ export default class Repository extends Component {
     this.setState({
       repository: repository.data,
       issues: issues.data,
+      /** quer dizer que já carregou */
       loading: false,
     });
   }
 
   render() {
     const { repository, issues, loading } = this.state;
-    return <h1>Repository</h1>;
+
+    /** enquanto não são carregadas as informações */
+    if (loading) {
+      return <Loading>Carregando</Loading>;
+    }
+
+    return (
+      /** aqui estamos reaproveitando um styled component o Container que também está sendo usado no Main e provem de src/components/Container/index.js */
+      <Container>
+        {/* mostrando os dados principais do dono do repositório  */}
+        <Owner>
+          {/* link para retornar ao Main */}
+          <Link to="/">Voltar aos repositórios</Link>
+          {/* pegando a url da imagem do avatar e o login */}
+          <img src={repository.owner.avatar_url} alt={repository.owner.login} />
+          <h1>{repository.name}</h1>
+          <p>{repository.description}</p>
+        </Owner>
+      </Container>
+    );
   }
 }
