@@ -25,7 +25,8 @@ module.exports = {
     'prettier',
   ],
   rules: {
-    // o babel cuida do state dessa forma por baixo dos panos
+    // o babel cuida do static e state por baixo dos panos
+    'react/static-property-placement': 'off',
     'react/state-in-constructor': 'off',
     'prettier/prettier': 'error',
     'react/jsx-filename-extension': [

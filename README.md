@@ -214,3 +214,8 @@ usando o Link de react-router-dom
 
 ## Carregando dados da API
 Buscando as demais informações dos repositórios
+
+## Definindo PropTypes
+```bash
+comp:~/first-project-with-react$ yarn add prop-types
+```
