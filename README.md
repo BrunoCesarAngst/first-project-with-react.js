@@ -211,3 +211,6 @@ carregando os dados do localStorage componentDidMount()
 
 ## Navegação de rotas
 usando o Link de react-router-dom
+
+## Carregando dados da API
+Buscando as demais informações dos repositórios
