@@ -19,7 +19,8 @@ export default function Routes() {
          * Main
          */}
         <Route path="/" exact component={Main} />
-        <Route path="/repository" component={Repository} />
+        {/* passando um parâmetro /: e lá no index.js dessa página passo essa informação */}
+        <Route path="/repository/:repository" component={Repository} />
       </Switch>
     </BrowserRouter>
   );

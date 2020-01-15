@@ -206,4 +206,8 @@ comp:~/first-project-with-react$ mkdir -p src/services/ && touch src/services/ap
 criamos um novo componente dentro index.js do Main, o List um ul, percorrendo os repositórios com map e Estilizando a página
 
 ## Utilizando LocalStorage
+salvando os dados para o localStorage com componentDidUpdate(), e
+carregando os dados do localStorage componentDidMount()
 
+## Navegação de rotas
+usando o Link de react-router-dom

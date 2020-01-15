@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
 
 /** importando a baseURL da api */
@@ -28,7 +30,7 @@ export default class Main extends Component {
     }
   }
 
-  /** salvando os dados do localStorage pegando o estado anterior prevState - antes dele ser atualizado */
+  /** salvando os dados para o localStorage pegando o estado anterior prevState - antes dele ser atualizado */
   componentDidUpdate(_, prevState) {
     const { repositories } = this.state;
 
@@ -114,7 +116,10 @@ export default class Main extends Component {
             /** passando no key a propriedade única de repository */
             <li key={repository.name}>
               <span>{repository.name}</span>
-              <a href="">Detalhes</a>
+              {/* rota para repository passando o nome do repositório como parâmetro e o encode transforma a bara em caractere especial e em routes.js aviso que será passado um parâmero  */}
+              <Link to={`/repository/${encodeURIComponent(repository.name)}`}>
+                Detalhes
+              </Link>
             </li>
           ))}
         </List>
