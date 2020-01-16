@@ -13,11 +13,13 @@ const Container = styled.div`
     font-size: 20px;
     /* centralizando o ícone e o texto na horizontal */
     display: flex;
-    flex-direction: row;
+    flex: 1;
     align-items: center;
+    text-align: center;
+    flex-direction: row;
 
     svg {
-      margin-right: 10px;
+      margin: 0 10px;
     }
   }
 `;

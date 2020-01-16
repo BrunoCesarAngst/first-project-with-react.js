@@ -5,7 +5,7 @@ import api from '../../services/api';
 
 /** aqui o styled component que pode ser usado em vários arquivos */
 import Container from '../../components/Container';
-import { Loading, Owner, IssueList } from './styles';
+import { Loading, Owner, IssueList, IssueFilter, PageAction } from './styles';
 
 /** passando de função para class */
 export default class Repository extends Component {
@@ -24,12 +24,20 @@ export default class Repository extends Component {
     issues: [],
     /** para controlar o estado de carregado ou não */
     loading: true,
+    filters: [
+      { state: 'all', label: 'Todas', active: true },
+      { state: 'open', label: 'Abertas', active: false },
+      { state: 'closed', label: 'Fechadas', active: false },
+    ],
+    filterIndex: 0,
+    page: 1,
   };
 
   /** fazendo chamadas a api */
   async componentDidMount() {
     /** pegando a match das propriedades */
     const { match } = this.props;
+    const { filters } = this.state;
 
     /** passando o nome do repositório como parâmetro e o encode transforma o caractere especial em bara */
     const repoName = decodeURIComponent(match.params.repository);
@@ -47,8 +55,8 @@ export default class Repository extends Component {
       api.get(`/repos/${repoName}/issues`, {
         /** passando query.params usando o axios */
         params: {
-          /** issues que não foram resolvidos */
-          state: 'open',
+          /** todas as issues ativas */
+          state: filters.find(fil => fil.active).state,
           /** mostra por página */
           per_page: 5,
         },
@@ -63,8 +71,45 @@ export default class Repository extends Component {
     });
   }
 
+  loadIssues = async () => {
+    const { match } = this.props;
+    const { filters, filterIndex, page } = this.state;
+
+    const repoName = decodeURIComponent(match.params.repository);
+
+    const response = await api.get(`/repos/${repoName}/issues`, {
+      params: {
+        state: filters[filterIndex].state,
+        per_page: 5,
+        page,
+      },
+    });
+
+    this.setState({ issues: response.data });
+  };
+
+  handleFilterClick = async filterIndex => {
+    await this.setState({ filterIndex });
+    this.loadIssues();
+  };
+
+  handlePage = async action => {
+    const { page } = this.state;
+    await this.setState({
+      page: action === 'back' ? page - 1 : page + 1,
+    });
+    this.loadIssues();
+  };
+
   render() {
-    const { repository, issues, loading } = this.state;
+    const {
+      repository,
+      issues,
+      loading,
+      filters,
+      filterIndex,
+      page,
+    } = this.state;
 
     /** enquanto não são carregadas as informações */
     if (loading) {
@@ -85,6 +130,18 @@ export default class Repository extends Component {
         </Owner>
 
         <IssueList>
+          <p>Issues</p>
+          <IssueFilter active={filterIndex}>
+            {filters.map((filter, index) => (
+              <button
+                type="button"
+                key={filter.label}
+                onClick={() => this.handleFilterClick(index)}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </IssueFilter>
           {issues.map(issue => (
             <li key={String(issue.id)}>
               <img src={issue.user.avatar_url} alt={issue.user.login} />
@@ -100,6 +157,19 @@ export default class Repository extends Component {
             </li>
           ))}
         </IssueList>
+        <PageAction>
+          <button
+            type="button"
+            disabled={page < 2}
+            onClick={() => this.handlePage('back')}
+          >
+            Anterior
+          </button>
+          <span>Página {page}</span>
+          <button type="button" onClick={() => this.handlePage('next')}>
+            proximo
+          </button>
+        </PageAction>
       </Container>
     );
   }

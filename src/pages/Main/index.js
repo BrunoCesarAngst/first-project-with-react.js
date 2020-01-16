@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
+import {
+  FaGithubAlt,
+  FaPlus,
+  FaExclamationCircle,
+  FaSpinner,
+} from 'react-icons/fa';
 
 /** importando a baseURL da api */
 import api from '../../services/api';
@@ -21,6 +26,7 @@ export default class Main extends Component {
     repositories: [],
     /** efeito de carregando do botão enquanto o repositório está sendo adicionado */
     loading: false,
+    error: null,
   };
 
   componentDidMount() {
@@ -45,7 +51,7 @@ export default class Main extends Component {
   }
 
   handleInputChange = e => {
-    this.setState({ newRepo: e.target.value });
+    this.setState({ newRepo: e.target.value, error: null });
   };
 
   /** recebendo o evento do onSubmit */
@@ -54,43 +60,60 @@ export default class Main extends Component {
     e.preventDefault();
 
     /** evento/efeito de carregando */
-    this.setState({ loading: true });
+    this.setState({ loading: true, error: false });
 
-    const { newRepo, repositories } = this.state;
+    try {
+      const { newRepo, repositories } = this.state;
 
-    /** criamos o arquivo api.js na pasta services dentro de src que utiliza axios e aqui fazemos a chamada a api com o método get que trás informações */
-    const response = await api.get(`/repos/${newRepo}`);
+      if (newRepo === '') {
+        throw new Error('Digite um repositório');
+      }
 
-    /** armazenamos uma informação relevante */
-    const data = {
-      name: response.data.full_name,
-    };
+      const hasRepo = repositories.find(repo => repo.name === newRepo);
 
-    this.setState({
-      /** criando um novo repositories copiando tudo de dentro dela e acrescentando o último dado conceito de imutabilidade */
-      repositories: [...repositories, data],
-      /** limpando o input */
-      newRepo: '',
-      /** termina o efeito de carregando */
-      loading: false,
-    });
+      if (hasRepo) {
+        throw new Error('Esse repositório já foi incluído');
+      }
+
+      /** criamos o arquivo api.js na pasta services dentro de src que utiliza axios e aqui fazemos a chamada a api com o método get que trás informações */
+      const response = await api.get(`/repos/${newRepo}`);
+
+      /** armazenamos uma informação relevante */
+      const data = {
+        name: response.data.full_name,
+      };
+
+      this.setState({
+        /** criando um novo repositories copiando tudo de dentro dela e acrescentando o último dado conceito de imutabilidade */
+        repositories: [...repositories, data],
+        /** limpando o input */
+        newRepo: '',
+        /** termina o efeito de carregando */
+        loading: false,
+      });
+    } catch (error) {
+      console.log(error);
+      this.setState({ error: true });
+    } finally {
+      this.setState({ loading: false });
+    }
   };
 
   render() {
     /** trazendo as propriedades do state */
-    const { newRepo, repositories, loading } = this.state;
+    const { newRepo, repositories, loading, error } = this.state;
 
     return (
       /* para fazer alinhamentos */
       <Container>
         <h1>
           {/** ícone do github */}
+          Acessando as issues <FaExclamationCircle /> de um repositório
           <FaGithubAlt />
-          Repositórios
         </h1>
 
         {/** quando um componente tem mais de dois níveis de encadeamento de estilo criamos um novo componente estilizado */}
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} error={error}>
           <input
             type="text"
             placeholder="Adicionar Repositório"

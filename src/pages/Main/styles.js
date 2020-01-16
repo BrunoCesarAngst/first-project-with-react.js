@@ -14,29 +14,6 @@ import styled, { keyframes, css } from 'styled-components';
 //   color: #fff
 // `;
 
-/** aqui passamos a usar o src/components/Container/index.js  */
-// export const Container = styled.div`
-//   max-width: 700px;
-//   /* 80px em cima e embaixo e auto nas laterais, assim se a tela passar de 700px o container permanece com 700px */
-//   margin: 80px auto;
-//   background: #fff;
-//   border-radius: 4px;
-//   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-//   padding: 30px;
-
-//   h1 {
-//     font-size: 20px;
-//     /* centralizando o ícone e o texto na horizontal */
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-
-//     svg {
-//       margin-right: 10px;
-//     }
-//   }
-// `;
-
 export const Form = styled.form`
   margin-top: 30px;
   /* assim garantimos input e o botão sempre fiquem um do lado do outro */
@@ -46,10 +23,12 @@ export const Form = styled.form`
   input {
     /* o input ocupa todo espaço possível */
     flex: 1;
-    border: 1px solid #eee;
+    border: 1px solid ${props => (props.error ? '#ff6b6b' : '#eee')};
     padding: 10px 15px;
     border-radius: 4px;
     font-size: 16px;
+
+    transition: border 0.25s ease-out;
   }
 `;
 

@@ -26,8 +26,9 @@ module.exports = {
   ],
   rules: {
     // o babel cuida do static e state por baixo dos panos
-    'react/static-property-placement': 'off',
     'react/state-in-constructor': 'off',
+    'react/static-property-placement': 'off',
+    'react/static-property-placement': 'off',
     'prettier/prettier': 'error',
     'react/jsx-filename-extension': [
       'warn',
